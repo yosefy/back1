@@ -1,0 +1,36 @@
+{{template "header"}}
+
+<form method="POST">
+    <label for="subnet">enter subnet to check {{ .Maski}}</label>
+    <input type="text" id="first" name="subnet">
+    <label>.0</label>
+
+    <br>
+    <input type="submit" value="check now" style="background-color:CornflowerBlue">
+</form>
+
+<br>
+  <table style="display: inline-block; border: 1px solid; float: left; ">
+    <tr>
+      <th>Free</th>
+    </tr>
+    {{range .Free}}
+        <tr>
+            <td>{{$.Maski}}{{$.Sub}}.{{.}}</td>
+        <tr>
+    {{end}}
+   </table>
+
+  <table style="display: inline-block; border: 1px solid; float: left; ">
+    <tr>
+      <th>Taken</th>
+    </tr>
+    {{range .Taken}}
+        <tr>
+            <td>{{$.Maski}}{{$.Sub}}.{{.}}</td>
+        <tr>
+    {{end}}
+   </table>
+
+
+{{template "footer"}}
