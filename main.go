@@ -2,15 +2,15 @@ package main
 
 import (
 	"encoding/json"
-	"net/http"
 	"fmt"
-	"strconv"
-	"time"
 	"html/template"
 	"log"
-	"sort"
+	"net/http"
 	"os/exec"
+	"sort"
+	"strconv"
 	"strings"
+	"time"
 )
 
 var Netmaski = "192.168."
@@ -23,7 +23,7 @@ func init() {
 var freeIpsCollector []int
 var takenIpsCollector []int
 
-func pingOne(a int, count int) () {
+func pingOne(a int, count int) {
 	string_to_ping := Netmaski + strconv.Itoa(a) + "." + strconv.Itoa(count)
 	out, _ := exec.Command("ping", string_to_ping, "-c 2", "-W 3").Output()
 	if strings.Contains(string(out), "2 packets transmitted, 2 received") {
@@ -92,7 +92,7 @@ func encd(w http.ResponseWriter, req *http.Request) {
 	data.Maski = Netmaski
 	s := "10"
 	data.Sub = s
-	if req.Method == http.MethodPost {
+	if req.Method == http.MethodGet {
 
 		checkAllIps(s)
 		fmt.Print(takenIpsCollector)
